@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class WorldScroller : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float forwardSpeed = 3f;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.position += forwardSpeed * Time.deltaTime * Vector3.down;
     }
 }
