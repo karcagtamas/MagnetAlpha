@@ -507,8 +507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MagnetController
   speed: 6
-  minX: -3
-  maxX: 3
+  minX: -2.5
+  maxX: 2.5
   moveAction: {fileID: 588939050}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
