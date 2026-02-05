@@ -3,15 +3,20 @@ using UnityEngine.InputSystem;
 
 public class MagnetController : MonoBehaviour
 {
+    private Rigidbody2D rb;
+
     [Header("Movement")]
     [SerializeField] private float speed = 6f;
-    [SerializeField] private float minX = -3f;
-    [SerializeField] private float maxX = 3f;
 
     [Header("Input")]
     [SerializeField] private InputActionReference moveAction;
 
-    private float horizontalInput;
+    private Vector2 input;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void OnEnable()
     {
@@ -29,14 +34,12 @@ public class MagnetController : MonoBehaviour
 
     void Update()
     {
-        var position = transform.position;
-        position.x += horizontalInput * speed * Time.deltaTime;
-        position.x = Mathf.Clamp(position.x, minX, maxX);
-        transform.position = position;
+        var moveDirection = new Vector2(input.x * speed, input.y * speed);
+        rb.MovePosition(rb.position + moveDirection * Time.deltaTime);
     }
 
     void OnMove(InputAction.CallbackContext context)
     {
-        horizontalInput = context.ReadValue<Vector2>().x;
+        input = context.ReadValue<Vector2>();
     }
 }
